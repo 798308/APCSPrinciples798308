@@ -1,11 +1,12 @@
 //Austin Matel
 //8/28/19
 class Ball{
-  constructor(x, y, dx, dy){
+  constructor(x, y, dx, dy, id){
     this.loc = createVector(x, y);
     this.vel = createVector(dx, dy);
     this.acc = createVector(0,1);
     this.clr = color(random(225), random(225), random(225));
+    this.id = id;
   }
 
 run(){
