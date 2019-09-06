@@ -18,7 +18,7 @@ function setup() {
 //  The draw function is called @  30 fps
 function draw() {
   background(5,5,5,50);
-  runBalls();
+  runShips();
   //runSquares();
 }
 function loadObjects(n){
@@ -29,7 +29,7 @@ function loadObjects(n){
   attractor = new Ball(width/2, height/2, random(-0.5,0.5), random(-0.5,0.5), 0);
 }
 function runShips(){
-  for(var i = 0; i < balls.length; i++){
+  for(var i = 0; i < ships.length; i++){
     ships[i].run();
   }
   repellor.run();

@@ -15,10 +15,17 @@ class Ship{
   }
 
   checkEdges(){
-    if(this.loc.x < 0) this.loc.x = width;
-    if(this.loc.x > width) this.loc.x = 0;
-    if(this.loc.y < 0) this.loc.y = height;
-    if(this.loc.x > height) this.loc.y = 0;
+    if(this.loc.x < 0){
+      this.loc.x = width;
+    }
+    if(this.loc.x > width){
+      this.loc.x = 0;
+    }
+    if(this.loc.y < 0){
+      this.loc.y = height;
+    }
+    if(this.loc.y > height){
+      this.loc.y = 0;
     }
   }
   update(){
@@ -34,6 +41,7 @@ class Ship{
       translate(this.loc.x,this.loc.y);
       rotate(this.angle);
       triangle(-5,8,5,8,0,-8);
+    pop();
     }
 
 }
