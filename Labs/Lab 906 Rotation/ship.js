@@ -29,13 +29,28 @@ class Ship{
     }
   }
   update(){
+    var disToAttractor;
+    var disToRepellor;
+    disToAttractor = this.loc.dist(attractor.loc);
+    disToRepellor = this.loc.dist(repellor.loc);
+    if(disToAttractor > 150){
+      this.acc = p5.Vector.sub(attractor.loc, this.loc);
+      this.acc.normalize();
+      this.acc.mult(0.1);
+    }
+    if(disToRepellor < 150){
+      this.acc = p5.Vector.sub(repellor.loc, this.loc);
+      this.acc.normalize();
+      this.acc.mult(-0.5);
+      }
+    this.vel.limit(4);
     this.vel.add(this.acc);
-    this.vel.limit(2);
     this.loc.add(this.vel);
     }
 
   render(){
     fill(this.clr);
+    this.angle = this.vel.heading() + 360;
     this.angle = this.angle +0.1;
     push();
       translate(this.loc.x,this.loc.y);
