@@ -27,10 +27,40 @@ function startGame(){
   textSize(90);
   fill(20,20,20);
   text("Paddle Game",150,300);
-  rect();
-  rect();
-  rect();
-
+  for (var i = 0; i < 4; i++){
+    if (i === 0){
+      fill(1, 255, 1);
+    }
+    if (i === 1){
+      fill(255, 255, 1);
+    }
+    if (i === 2){
+      fill(255, 1, 1);
+    }
+    if (i === 3){
+      fill(1, 1, 255);
+    }
+    rect((i * 200) + 50, 500, 100, 75, 20);
+  }
+  for (var n = 0; n < 4; n++){
+    fill(20,20,20);
+    textFont('Georgia');
+    textSize(18);
+    var label;
+    if (n === 0){
+      label = "Easy";
+    }
+    if (n === 1){
+      label = "Medium";
+    }
+    if (n === 2){
+      label = "Hard";
+    }
+    if (n === 3){
+      label = "Instructions";
+    }
+    text(str(label), (n * 200) + 55, 550);
+  }
 }
 
 //game code
