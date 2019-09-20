@@ -5,7 +5,7 @@
 var balls = [];
 var paddle;
 var gameState = 1;
-var difficulty = 0;
+var difficulty;
 
 function loadObjects(n){
   for (var i = 0; i < n; i++){
@@ -19,7 +19,6 @@ function setup() {
   var cnv = createCanvas(800, 800);
   cnv.position((windowWidth-width)/2, 30);
   background(20, 20, 20);
-  loadObjects(difficulty);
 }
 
 //title screen
@@ -55,17 +54,17 @@ function startGame(){
   if (mouseX > 50 && mouseX < 150 && mouseY > 500 && mouseY < 575){
     gameState = 2;
     difficulty = 5;
-    console.log("yee");
+    loadObjects(difficulty);
   }
   if (mouseX > 250 && mouseX < 350 && mouseY > 500 && mouseY < 575){
     gameState = 2;
     difficulty = 10;
-    console.log("haw")
+    loadObjects(difficulty);
   }
   if (mouseX > 450 && mouseX < 550 && mouseY > 500 && mouseY < 575){
     gameState = 2;
     difficulty = 15;
-    console.log("cowboy")
+    loadObjects(difficulty);
   }
 }
 
@@ -73,9 +72,8 @@ function startGame(){
 
 //game code
 function playGame(){
-  background(20,20,20);
-    background(20,20,20,50);
-    runObjects();
+  background(20,20,20,50);
+  runObjects();
   }
 
 //  The draw function is called @  30 fps
@@ -90,8 +88,9 @@ function draw() {
 }
 
 function runObjects(){
-  for (var i = 0; i < balls.length; i++){
-    balls[i].run();
+  for(var t = 0; t < balls.length; t++){
+    balls[t].run();
+    console.log("balls");
   }
   paddle.run();
 }
@@ -99,6 +98,7 @@ function runObjects(){
 function loadObjects(n){
   for (var i = 0; i < n; i++){
     balls[i] = new Ball(random(width), random(0,200), random(-3,3), random(-3,3));
+    console.log(balls[0]);
   }
   paddle = new Paddle(width/2, 700);
 }
