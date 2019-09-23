@@ -5,7 +5,7 @@
 var balls = [];
 var paddle;
 var gameState = 1;
-var difficulty;
+var difficulty, health, score;
 
 function loadObjects(n){
   for (var i = 0; i < n; i++){
@@ -51,20 +51,32 @@ function startGame(){
     fill(20,20,20);
     text(str(label), (i * 200) + 55, 550);
   }
-  if (mouseX > 50 && mouseX < 150 && mouseY > 500 && mouseY < 575){
+  if (mouseX > 50 && mouseX < 150 && mouseY > 500 && mouseY < 575 && mouseIsPressed){
     gameState = 2;
     difficulty = 5;
+    health = 10;
+    score = 0;
     loadObjects(difficulty);
   }
-  if (mouseX > 250 && mouseX < 350 && mouseY > 500 && mouseY < 575){
+  if (mouseX > 250 && mouseX < 350 && mouseY > 500 && mouseY < 575 && mouseIsPressed){
     gameState = 2;
     difficulty = 10;
+    health = 5;
+    score = 0;
     loadObjects(difficulty);
   }
-  if (mouseX > 450 && mouseX < 550 && mouseY > 500 && mouseY < 575){
+  if (mouseX > 450 && mouseX < 550 && mouseY > 500 && mouseY < 575 && mouseIsPressed){
     gameState = 2;
     difficulty = 15;
+    health = 3;
+    score = 0;
     loadObjects(difficulty);
+  }
+  if (mouseX > 650 && mouseX < 750&& mouseY > 500 && mouseY < 575 && mouseIsPressed){
+    fill(255);
+    text("Click on a difficulty and try to catch the balls on the top of the paddle.", 150, 400);
+    text("If a ball hits the bottom of your paddle, you will lose health.", 150, 420);
+    text("If you catch 10 balls before running out of health, you win! Good Luck!", 150, 440);
   }
 }
 
@@ -74,6 +86,10 @@ function startGame(){
 function playGame(){
   background(20,20,20,50);
   runObjects();
+  collision();
+  if (health <= 0){
+    gameState = 3;
+    }
   }
 
 //  The draw function is called @  30 fps
@@ -93,12 +109,26 @@ function runObjects(){
     console.log("balls");
   }
   paddle.run();
+  fill(255);
+  text("Score = "+ score, 20, 50);
+  text("Health = "+ health, 700, 50);
 }
 
 function loadObjects(n){
   for (var i = 0; i < n; i++){
     balls[i] = new Ball(random(width), random(0,200), random(-3,3), random(-3,3));
-    console.log(balls[0]);
   }
   paddle = new Paddle(width/2, 700);
+}
+function collision(){
+  for (var i = balls.length - 1; i >= 0; i-- ){
+    if (balls[i].isColliding() && ball.vel.y / ball.vel.y == -1){
+      balls.splice(i,1);
+      health = health -1;
+    }
+    if(balls[i].isColliding() && Math.sign(ball.vel.y) == 1){
+      balls.splice(i,1);
+      score = score +1;
+    }
+  }
 }

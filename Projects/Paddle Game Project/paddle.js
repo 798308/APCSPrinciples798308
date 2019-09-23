@@ -22,7 +22,7 @@ class Paddle{
     }
   }
   update(){
-    var mouseLoc = createVector(mouseX,mouseY);
+    var mouseLoc = createVector(mouseX - 50,mouseY);
     this.loc = p5.Vector.lerp(this.loc, mouseLoc, 0.09);
   }
   render(){

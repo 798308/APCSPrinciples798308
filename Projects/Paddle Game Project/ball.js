@@ -19,10 +19,10 @@ class Ball{
 
   checkEdges(){
     if (this.loc.x < 0){
-      this.loc.x = -(this.loc.x);
+      this.ballx = -(this.ballx);
     }
     if (this.loc.x > width){
-      this.loc.x = -(this.loc.x);
+      this.ballx = -(this.ballx);
     }
     if (this.loc.y < 0){
       this.vel.y = -(this.vel.y);
@@ -41,7 +41,7 @@ class Ball{
     ellipse(this.loc.x, this.loc.y, this.w, this.w)
   }
   isColliding(){
-    if(this.loc.x > paddle.loc.x && this.loc.x < paddle.loc.x + paddle.w && this.loc.y < paddle.loc.y + paddle.h && this.loc.y > paddle.loc.y){
+    if(this.loc.x > paddle.loc.x && this.loc.x < paddle.loc.x + paddle.w && this.loc.y > paddle.loc.y + paddle.h && this.loc.y < paddle.loc.y){
       return true;
     } else{
       return false;
