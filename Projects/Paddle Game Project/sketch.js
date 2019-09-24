@@ -5,8 +5,8 @@
 var balls = [];
 var paddle;
 var gameState = 1;
-var difficulty, health, score;
-
+var difficulty, health, score, win;
+//loads balls and paddles
 function loadObjects(n){
   for (var i = 0; i < n; i++){
     balls[i] = new Ball(random(width), random(0,200), random(-3,3), random(-3,3));
@@ -80,17 +80,24 @@ function startGame(){
   }
 }
 
-
+//end screen
+function endGame(){
+  background(10, 200, 100);
+  fill(255);
+  textFont('Times New Roman');
+  textSize(90);
+  text("You won", 150, 300);
+}
 
 //game code
 function playGame(){
   background(128, 128, 128, 50);
   runObjects();
-  collision();
   if (health <= 0){
+    win = 0;
     gameState = 3;
-    }
   }
+}
 
 //  The draw function is called @  30 fps
 //displaying game states
@@ -100,6 +107,9 @@ function draw() {
   }
   if (gameState === 2){
     playGame();
+  }
+  if (gameState === 3){
+    endGame();
   }
 }
 
@@ -111,24 +121,4 @@ function runObjects(){
   fill(255);
   text("Score = "+ score, 20, 50);
   text("Health = "+ health, 700, 50);
-}
-//loads the paddle and balls
-function loadObjects(n){
-  for (var i = 0; i < n; i++){
-    balls[i] = new Ball(random(width), random(0,200), random(-3,3), random(-3,3));
-  }
-  paddle = new Paddle(width/2, 700);
-}
-//detects where and if the ball hits the paddle. It also gets rid of the ball
-function collision(){
-  for (var i = balls.length - 1; i >= 0; i-- ){
-    if (balls[i].isColliding() && Math.sign(balls[i].vel) === 1){
-      balls[i].splice(i,1);
-      health = health -1;
-    }
-    if(balls[i].isColliding() && Math.sign(balls[i].vel) === -1){
-      balls[i].splice(i,1);
-      score = score + 1;
-    }
-  }
 }

@@ -15,6 +15,7 @@ class Ball{
     this.update();
     this.render();
     this.isColliding();
+    this.removeBall();
   }
 
   checkEdges(){
@@ -30,6 +31,13 @@ class Ball{
     if (this.loc.y > height){
         this.vel.y = -(this.vel.y);
     }
+    if (this.loc.x > paddle.loc.x && this.loc.x < paddle.loc.x + paddle.w && this.loc.y >= paddle.loc.y && this.loc.y <= paddle.loc.y + paddle.h && this.vel.y > 0){
+      this.vel.y = -(this.vel.y);
+      score = score + 1;
+      if (score === 10){
+        win = 1;
+      }
+    }
   }
   update(){
     this.vel.add(this.acc);
@@ -41,10 +49,18 @@ class Ball{
     ellipse(this.loc.x, this.loc.y, this.w, this.w)
   }
   isColliding(){
-    if (this.loc.x > paddle.loc.x && this.loc.x < paddle.loc.x + paddle.w && this.loc.y < paddle.loc.y + paddle.h && this.loc.y > paddle.loc.y){
+    if (this.loc.x > paddle.loc.x && this.loc.x < paddle.loc.x + paddle.w && this.loc.y > paddle.loc.y && this.loc.y < paddle.loc.y + paddle.h&& this.vel.y < 0){
       return true;
-    } else{
+    }else{
       return false;
+    }
+  }
+  removeBall(){
+    for (var i = balls.length - 1; 1 >= 0; i--){
+      if (balls[i].isColliding()){
+        balls[i].splice(i,1);
+        health = health -1;
+      }
     }
   }
 }
