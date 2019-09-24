@@ -84,7 +84,7 @@ function startGame(){
 
 //game code
 function playGame(){
-  background(20,20,20,50);
+  background(128, 128, 128, 50);
   runObjects();
   collision();
   if (health <= 0){
@@ -106,29 +106,29 @@ function draw() {
 function runObjects(){
   for(var t = 0; t < balls.length; t++){
     balls[t].run();
-    console.log("balls");
   }
   paddle.run();
   fill(255);
   text("Score = "+ score, 20, 50);
   text("Health = "+ health, 700, 50);
 }
-
+//loads the paddle and balls
 function loadObjects(n){
   for (var i = 0; i < n; i++){
     balls[i] = new Ball(random(width), random(0,200), random(-3,3), random(-3,3));
   }
   paddle = new Paddle(width/2, 700);
 }
+//detects where and if the ball hits the paddle. It also gets rid of the ball
 function collision(){
   for (var i = balls.length - 1; i >= 0; i-- ){
-    if (balls[i].isColliding() && ball.vel.y / ball.vel.y == -1){
-      balls.splice(i,1);
+    if (balls[i].isColliding() && Math.sign(balls[i].vel) === 1){
+      balls[i].splice(i,1);
       health = health -1;
     }
-    if(balls[i].isColliding() && Math.sign(ball.vel.y) == 1){
-      balls.splice(i,1);
-      score = score +1;
+    if(balls[i].isColliding() && Math.sign(balls[i].vel) === -1){
+      balls[i].splice(i,1);
+      score = score + 1;
     }
   }
 }

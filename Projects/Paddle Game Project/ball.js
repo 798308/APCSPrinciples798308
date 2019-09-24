@@ -41,7 +41,7 @@ class Ball{
     ellipse(this.loc.x, this.loc.y, this.w, this.w)
   }
   isColliding(){
-    if(this.loc.x > paddle.loc.x && this.loc.x < paddle.loc.x + paddle.w && this.loc.y > paddle.loc.y + paddle.h && this.loc.y < paddle.loc.y){
+    if (this.loc.x > paddle.loc.x && this.loc.x < paddle.loc.x + paddle.w && this.loc.y < paddle.loc.y + paddle.h && this.loc.y > paddle.loc.y){
       return true;
     } else{
       return false;

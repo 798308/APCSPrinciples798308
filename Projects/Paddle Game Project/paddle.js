@@ -2,8 +2,8 @@ class Paddle{
   constructor(x, y){
     this.loc = createVector(mouseX, mouseY);
     this.clr = color(random(225), random(225), random(225));
-    this.w = 100;
-    this.h = 20;
+    this.w = 150;
+    this.h = 35;
     this.acc = createVector(0,0);
   }
 
@@ -27,6 +27,6 @@ class Paddle{
   }
   render(){
     fill(this.clr);
-    rect(this.loc.x, 700, this.w, this.h);
+    rect(this.loc.x, 650, this.w, this.h);
   }
 }
