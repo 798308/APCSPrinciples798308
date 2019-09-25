@@ -57,7 +57,7 @@ class Ball{
   }
   removeBall(){
     for (var i = balls.length - 1; 1 >= 0; i--){
-      if (balls[i].isColliding()){//says isColliding is undefined
+      if (balls[i].isColliding()){
         balls[i].splice(i,1);
         health = health -1;
       }

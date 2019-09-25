@@ -6,7 +6,7 @@ var balls = [];
 var paddle;
 var gameState = 1;
 var difficulty, health, score;
-var win;
+var win, BtnEasy, BtnMedium, BtnHard, BtnInstructions;
 //loads balls and paddles
 function loadObjects(n){
   for (var i = 0; i < n; i++){
@@ -20,65 +20,16 @@ function setup() {
   var cnv = createCanvas(800, 800);
   cnv.position((windowWidth-width)/2, 30);
   background(20, 20, 20);
+  makeButtons();
 }
 
 //title screen
 function startGame(){
+  runButtons();
   background(255, 20, 100);
   textSize(90);
   fill(20,20,20);
   text("Paddle Game",150,300);
-  for (var i = 0; i < 4; i++){//buttons and labels
-    textFont('Georgia');
-    textSize(18);
-    var label;
-    if (i === 0){
-      fill(1, 255, 1);
-      label = "Easy";
-    }
-    if (i === 1){
-      fill(255, 255, 1);
-      label = "Medium";
-    }
-    if (i === 2){
-      fill(255, 1, 1);
-      label = "Hard";
-    }
-    if (i === 3){
-      fill(1, 1, 255);
-      label = "Instructions";
-    }
-    rect((i * 200) + 50, 500, 100, 75, 20);
-    fill(20,20,20);
-    text(str(label), (i * 200) + 55, 550);
-  }
-  if (mouseX > 50 && mouseX < 150 && mouseY > 500 && mouseY < 575 && mouseIsPressed){
-    gameState = 2;
-    difficulty = 5;
-    health = 10;
-    score = 0;
-    loadObjects(difficulty);
-  }
-  if (mouseX > 250 && mouseX < 350 && mouseY > 500 && mouseY < 575 && mouseIsPressed){
-    gameState = 2;
-    difficulty = 10;
-    health = 5;
-    score = 0;
-    loadObjects(difficulty);
-  }
-  if (mouseX > 450 && mouseX < 550 && mouseY > 500 && mouseY < 575 && mouseIsPressed){
-    gameState = 2;
-    difficulty = 15;
-    health = 3;
-    score = 0;
-    loadObjects(difficulty);
-  }
-  if (mouseX > 650 && mouseX < 750&& mouseY > 500 && mouseY < 575 && mouseIsPressed){
-    fill(255);
-    text("Click on a difficulty and try to catch the balls on the top of the paddle.", 150, 400);
-    text("If a ball hits the bottom of your paddle, you will lose health.", 150, 420);
-    text("If you catch 10 balls before running out of health, you win! Good Luck!", 150, 440);
-  }
 }
 
 //end screen
@@ -89,28 +40,28 @@ function endGame(){
   if (win === 1){
     background(10, 200, 100);
     text("You won", 200, 300);
-    fill(255,10,10);
-    rect(250, 600, 300, 100, 20);
-    fill(255);
-    textSize(30);
-    text("Menu", 350, 650);
-    if (mouseX > 250 && mouseX < 550 && mouseY > 600 && mouseY < 700 && mouseIsPressed){
-      gameState = 1;
-    }
+    BtnMenu = new Button(250, 600, 300, 100, "Menu", color(10,255,10), 5);
+    BtnMenu.run();
     }else{
       background(255, 20, 10);
       text("Game Over", 150, 300);
-      fill(10,255,10);
-      rect(250, 600, 300, 100, 20);
-      fill(255);
-      textSize(30);
-      text("Menu", 350, 650);
-      if (mouseX > 250 && mouseX < 550 && mouseY > 600 && mouseY < 700 && mouseIsPressed){
-        gameState = 1;
-      }
+      BtnMenu = new Button(250, 600, 300, 100, "Menu", color(10,255,10), 5);
+      BtnMenu.run();
     }
 }
 
+function runButtons(){
+  BtnEasy.run();
+  BtnMedium.run();
+  BtnHard.run();
+  BtnHard.run();
+}
+function makeButtons(){
+  BtnEasy = new Button(50, 500, 100, 75, "Easy", color(1, 255, 1), 1);
+  BtnMedium = new Button(250, 500, 100, 75, "Medium", color(255, 255, 1), 2);
+  BtnHard = new Button(450, 500, 100, 75, "Hard", color(255, 1, 1), 3);
+  BtnInstructions = new Button(650, 500, 100, 75, "Instructions", color(255, 1, 1), 4);
+}
 //game code
 function playGame(){
   background(128, 128, 128, 50);
