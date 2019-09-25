@@ -49,7 +49,7 @@ class Ball{
     ellipse(this.loc.x, this.loc.y, this.w, this.w)
   }
   isColliding(){
-    if (this.loc.x > paddle.loc.x && this.loc.x < paddle.loc.x + paddle.w && this.loc.y > paddle.loc.y && this.loc.y < paddle.loc.y + paddle.h&& this.vel.y < 0){
+    if (this.loc.x > paddle.loc.x && this.loc.x < paddle.loc.x + paddle.w && this.loc.y > paddle.loc.y && this.loc.y < paddle.loc.y + paddle.h && this.vel.y < 0){
       return true;
     }else{
       return false;
@@ -57,7 +57,7 @@ class Ball{
   }
   removeBall(){
     for (var i = balls.length - 1; 1 >= 0; i--){
-      if (balls[i].isColliding()){
+      if (balls[i].isColliding()){//says isColliding is undefined
         balls[i].splice(i,1);
         health = health -1;
       }

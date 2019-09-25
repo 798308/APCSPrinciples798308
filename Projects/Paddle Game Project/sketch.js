@@ -5,7 +5,8 @@
 var balls = [];
 var paddle;
 var gameState = 1;
-var difficulty, health, score, win;
+var difficulty, health, score;
+var win;
 //loads balls and paddles
 function loadObjects(n){
   for (var i = 0; i < n; i++){
@@ -82,11 +83,32 @@ function startGame(){
 
 //end screen
 function endGame(){
-  background(10, 200, 100);
   fill(255);
   textFont('Times New Roman');
   textSize(90);
-  text("You won", 150, 300);
+  if (win === 1){
+    background(10, 200, 100);
+    text("You won", 200, 300);
+    fill(255,10,10);
+    rect(250, 600, 300, 100, 20);
+    fill(255);
+    textSize(30);
+    text("Menu", 350, 650);
+    if (mouseX > 250 && mouseX < 550 && mouseY > 600 && mouseY < 700 && mouseIsPressed){
+      gameState = 1;
+    }
+    }else{
+      background(255, 20, 10);
+      text("Game Over", 150, 300);
+      fill(10,255,10);
+      rect(250, 600, 300, 100, 20);
+      fill(255);
+      textSize(30);
+      text("Menu", 350, 650);
+      if (mouseX > 250 && mouseX < 550 && mouseY > 600 && mouseY < 700 && mouseIsPressed){
+        gameState = 1;
+      }
+    }
 }
 
 //game code
@@ -117,7 +139,7 @@ function runObjects(){
   for(var t = 0; t < balls.length; t++){
     balls[t].run();
   }
-  paddle.run();
+  paddle.run();//says run is undefined
   fill(255);
   text("Score = "+ score, 20, 50);
   text("Health = "+ health, 700, 50);
