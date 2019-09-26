@@ -1,7 +1,7 @@
 //Austin Matel
 //8/21/19
-class Button{
-  constructor(x, y, h, w, msg, clr, id){
+class Button{//creating parameters
+  constructor(x, y, w, h, msg, clr, id){
     this.loc = createVector(x,y);
     this.h = h;
     this.w = w;
@@ -9,17 +9,20 @@ class Button{
     this.clr = clr;
     this.id = id;
   }
+  //actually creating buttons
   run(){
-    this.render;
-    this.isPressed;
+    this.render();
+    this.isPressed();
   }
+  //drawing buttons
   render(){
     fill(this.clr);
     rect(this.x, this.y, this.w, this.h, 20);
     fill(10);
     textSize(30);
-    text(this.msg, this.x, this.y);
+    text(this.msg, this.x + 40, this.y+ 30);
   }
+  //checks if the button is pressed and makes different buttons do different things
   isPressed(){
     if (mouseX > this.x && mouseX < this.x + this.w && mouseY > this.y && mouseY < this.y + this.h && mouseIsPressed){
       if(this.id == 1){

@@ -6,7 +6,8 @@ var balls = [];
 var paddle;
 var gameState = 1;
 var difficulty, health, score;
-var win, BtnEasy, BtnMedium, BtnHard, BtnInstructions;
+var win;
+var BtnEasy, BtnMedium, BtnHard, BtnInstructions;
 //loads balls and paddles
 function loadObjects(n){
   for (var i = 0; i < n; i++){
@@ -19,16 +20,16 @@ function loadObjects(n){
 function setup() {
   var cnv = createCanvas(800, 800);
   cnv.position((windowWidth-width)/2, 30);
-  background(20, 20, 20);
+  background(128, 128, 128, 50);
   makeButtons();
 }
 
 //title screen
 function startGame(){
   runButtons();
-  background(255, 20, 100);
   textSize(90);
   fill(20,20,20);
+  textFont('Georgia')
   text("Paddle Game",150,300);
 }
 
@@ -49,18 +50,19 @@ function endGame(){
       BtnMenu.run();
     }
 }
-
-function runButtons(){
-  BtnEasy.run();
-  BtnMedium.run();
-  BtnHard.run();
-  BtnHard.run();
-}
+//loads the buttons
 function makeButtons(){
   BtnEasy = new Button(50, 500, 100, 75, "Easy", color(1, 255, 1), 1);
   BtnMedium = new Button(250, 500, 100, 75, "Medium", color(255, 255, 1), 2);
   BtnHard = new Button(450, 500, 100, 75, "Hard", color(255, 1, 1), 3);
-  BtnInstructions = new Button(650, 500, 100, 75, "Instructions", color(255, 1, 1), 4);
+  BtnInstructions = new Button(650, 500, 100, 75, "Instructions",color(1,1,255),4);
+}
+//shows buttons
+function runButtons(){
+  BtnEasy.run();
+  BtnMedium.run();
+  BtnHard.run();
+  BtnInstructions.run();
 }
 //game code
 function playGame(){
@@ -76,7 +78,8 @@ function playGame(){
 //displaying game states
 function draw() {
   if (gameState === 1){
-    startGame();
+    background(128, 128, 128, 50);
+    playGame();
   }
   if (gameState === 2){
     playGame();
@@ -90,8 +93,8 @@ function runObjects(){
   for(var t = 0; t < balls.length; t++){
     balls[t].run();
   }
-  paddle.run();//says run is undefined
   fill(255);
   text("Score = "+ score, 20, 50);
   text("Health = "+ health, 700, 50);
+  paddle.run();
 }
