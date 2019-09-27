@@ -8,9 +8,9 @@ class Paddle{
   }
 
   run(){
+    this.render();
     this.checkEdges();
     this.update();
-    this.render();
   }
 
   checkEdges(){

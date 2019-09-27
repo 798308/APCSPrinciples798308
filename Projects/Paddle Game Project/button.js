@@ -1,6 +1,7 @@
 //Austin Matel
 //8/21/19
-class Button{//creating parameters
+//creating parameters
+class Button{
   constructor(x, y, w, h, msg, clr, id){
     this.loc = createVector(x,y);
     this.h = h;
@@ -17,19 +18,26 @@ class Button{//creating parameters
   //drawing buttons
   render(){
     fill(this.clr);
-    rect(this.x, this.y, this.w, this.h, 20);
+    rect(this.loc.x, this.loc.y, this.w, this.h, 20);
     fill(10);
-    textSize(30);
-    text(this.msg, this.x + 40, this.y+ 30);
+    textSize(20);
+    if (this.id === 4){
+      textSize(18);
+      text(this.msg, this.loc.x, this.loc.y + 30);
+    }else{
+      textSize(20);
+      text(this.msg, this.loc.x + 10, this.loc.y + 30);
+    }
   }
   //checks if the button is pressed and makes different buttons do different things
   isPressed(){
-    if (mouseX > this.x && mouseX < this.x + this.w && mouseY > this.y && mouseY < this.y + this.h && mouseIsPressed){
+    if (mouseX > this.loc.x && mouseX < this.loc.x + this.w && mouseY > this.loc.y && mouseY < this.loc.y + this.h && mouseIsPressed){
       if(this.id == 1){
         gameState = 2;
         difficulty = 5;
-        health = 10;
+        health = 5;
         score = 0;
+        winScore = 10;
         loadObjects(difficulty);
       }
       if(this.id == 2){
@@ -37,6 +45,7 @@ class Button{//creating parameters
         difficulty = 10;
         health = 5;
         score = 0;
+        winScore = 15;
         loadObjects(difficulty);
       }
       if(this.id == 3){
@@ -44,13 +53,14 @@ class Button{//creating parameters
         difficulty = 15;
         health = 3;
         score = 0;
+        winScore = 20;
         loadObjects(difficulty);
       }
       if(this.id == 4){
         fill(255);
-        text("Click on a difficulty and try to catch the balls on the top of the paddle.", 150, 400);
-        text("If a ball hits the bottom of your paddle, you will lose health.", 150, 420);
-        text("If you catch 10 balls before running out of health, you win! Good Luck!", 150, 440);
+        text("Click on a difficulty and try to catch the balls on the top of the paddle.", 90, 650);
+        text("If a ball hits the bottom of your paddle, you will lose health.", 90, 670);
+        text("If you catch a certain amount balls before running out of health, you win!", 90, 690);
       }
       if(this.id == 5){
         gameState = 1;

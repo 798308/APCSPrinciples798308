@@ -6,8 +6,15 @@ var balls = [];
 var paddle;
 var gameState = 1;
 var difficulty, health, score;
-var win;
-var BtnEasy, BtnMedium, BtnHard, BtnInstructions;
+var win = 2;
+var btnEasy, btnMedium, btnHard, btnInstructions;
+var winScore;
+//setup
+function setup() {
+  var cnv = createCanvas(800, 800);
+  cnv.position((windowWidth-width)/2, 30);
+  makeButtons();
+}
 //loads balls and paddles
 function loadObjects(n){
   for (var i = 0; i < n; i++){
@@ -15,22 +22,22 @@ function loadObjects(n){
   }
   paddle = new Paddle(width/2, 700);
 }
-
-//setup
-function setup() {
-  var cnv = createCanvas(800, 800);
-  cnv.position((windowWidth-width)/2, 30);
-  background(128, 128, 128, 50);
-  makeButtons();
-}
-
 //title screen
 function startGame(){
+  win = 2;
+  runButtons();
+  background(200,70,100);
   runButtons();
   textSize(90);
   fill(20,20,20);
   textFont('Georgia')
-  text("Paddle Game",150,300);
+  text("Paddle Game",150,200);
+  fill(random(0,255), random(0,255), random(0,255));
+  ellipse(340, 300, 100, 100);
+  fill(random(0,255), random(0,255), random(0,255));
+  ellipse(460, 300, 100, 100);
+  fill(random(0,255), random(0,255), random(0,255));
+  arc(400, 400, 80, 80, 0, PI, CHORD);
 }
 
 //end screen
@@ -40,36 +47,56 @@ function endGame(){
   textSize(90);
   if (win === 1){
     background(10, 200, 100);
-    text("You won", 200, 300);
-    BtnMenu = new Button(250, 600, 300, 100, "Menu", color(10,255,10), 5);
-    BtnMenu.run();
+    text("You won", 200, 200);
+    btnMenu = new Button(250, 600, 300, 100, "Menu", color(10,255,10), 5);
+    btnMenu.run();
+    //smiley face
+    fill(random(0,255), random(0,255), random(0,255));
+    ellipse(340, 300, 100, 100);
+    fill(random(0,255), random(0,255), random(0,255));
+    ellipse(460, 300, 100, 100);
+    fill(random(0,255), random(0,255), random(0,255));
+    arc(400, 400, 80, 80, 0, PI, CHORD);
     }else{
       background(255, 20, 10);
-      text("Game Over", 150, 300);
-      BtnMenu = new Button(250, 600, 300, 100, "Menu", color(10,255,10), 5);
-      BtnMenu.run();
+      text("Game Over", 150, 200);
+      btnMenu = new Button(250, 600, 300, 100, "Menu", color(10,255,10), 5);
+      btnMenu.run();
+      //frowny face
+      fill(random(0,255), random(0,255), random(0,255));
+      ellipse(340, 300, 100, 100);
+      fill(random(0,255), random(0,255), random(0,255));
+      ellipse(460, 300, 100, 100);
+      fill(random(0,255), random(0,255), random(0,255));
+      arc(400, 400, 80, 80, PI, 0, CHORD);
+
     }
+
 }
 //loads the buttons
 function makeButtons(){
-  BtnEasy = new Button(50, 500, 100, 75, "Easy", color(1, 255, 1), 1);
-  BtnMedium = new Button(250, 500, 100, 75, "Medium", color(255, 255, 1), 2);
-  BtnHard = new Button(450, 500, 100, 75, "Hard", color(255, 1, 1), 3);
-  BtnInstructions = new Button(650, 500, 100, 75, "Instructions",color(1,1,255),4);
+  btnEasy = new Button(50, 500, 100, 75, "Easy", color(1, 255, 1), 1);
+  btnMedium = new Button(250, 500, 100, 75, "Medium", color(255, 255, 1), 2);
+  btnHard = new Button(450, 500, 100, 75, "Hard", color(255, 1, 1), 3);
+  btnInstructions = new Button(650, 500, 100, 75, "Instructions",color(0, 255, 255), 4);
 }
 //shows buttons
 function runButtons(){
-  BtnEasy.run();
-  BtnMedium.run();
-  BtnHard.run();
-  BtnInstructions.run();
+  btnEasy.run();
+  btnMedium.run();
+  btnHard.run();
+  btnInstructions.run();
 }
 //game code
 function playGame(){
   background(128, 128, 128, 50);
   runObjects();
+  removeBall();
   if (health <= 0){
     win = 0;
+    gameState = 3;
+  }
+  if (win === 1){
     gameState = 3;
   }
 }
@@ -78,8 +105,7 @@ function playGame(){
 //displaying game states
 function draw() {
   if (gameState === 1){
-    background(128, 128, 128, 50);
-    playGame();
+    startGame();
   }
   if (gameState === 2){
     playGame();
@@ -94,7 +120,17 @@ function runObjects(){
     balls[t].run();
   }
   fill(255);
+  textSize(20);
   text("Score = "+ score, 20, 50);
   text("Health = "+ health, 700, 50);
   paddle.run();
+}
+//if the ball hits the underside of the paddle, the ball will disappear
+function removeBall(){
+  for (var i = balls.length - 1; i >= 0; i--){
+    if (balls[i].isColliding()){
+      balls.splice(i,1);
+      health = health -1;
+    }
+  }
 }
