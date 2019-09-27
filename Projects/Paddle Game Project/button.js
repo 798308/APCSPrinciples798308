@@ -64,6 +64,7 @@ class Button{
       }
       if(this.id == 5){
         gameState = 1;
+        balls = [];
       }
     }
   }

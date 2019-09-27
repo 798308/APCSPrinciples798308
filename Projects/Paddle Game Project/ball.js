@@ -48,7 +48,7 @@ class Ball{
   //creates the size and shape of the ball
   render(){
     fill(this.clr);
-    ellipse(this.loc.x, this.loc.y, this.w, this.w)
+    ellipse(this.loc.x, this.loc.y, this.w, this.w);
   }
   //checks to see if the ball is touching the underside of the paddle
   isColliding(){
