@@ -31,7 +31,7 @@ class Button{
   }
   //checks if the button is pressed and makes different buttons do different things
   isPressed(){
-    if (mouseX > this.loc.x && mouseX < this.loc.x + this.w && mouseY > this.loc.y && mouseY < this.loc.y + this.h && mouseIsPressed){
+    if (mouseX - 400 > this.loc.x && mouseX - 400 < this.loc.x + this.w && mouseY - 300 > this.loc.y && mouseY - 300 < this.loc.y + this.h && mouseIsPressed){
       if(this.id == 1){
         gameState = 2;
         difficulty = 5;

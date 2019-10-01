@@ -33,32 +33,35 @@ function loadObjects(n){
 //title screen
 function startGame(){
   win = 2;
+  StartScreen();
+  translate(0,0);
+  textSize(90);
+  fill(20,20,20);
+  textFont('Georgia')
+  text("Paddle Game",-250,-100);
+  fill(random(0,255), random(0,255), random(0,255));
+  ellipse(40, 0, 100, 100);
+  fill(random(0,255), random(0,255), random(0,255));
+  ellipse(-80, 0, 100, 100);
+  fill(random(0,255), random(0,255), random(0,255));
+  arc(-20, 100, 80, 80, 0, PI, CHORD);
   runButtons();
+}
+function StartScreen(){
   background(242);
-  translate(300, 300);
   rotate(radians(rot));
- ellipseMode(CORNER);
+  translate(400,400)
+  ellipseMode(CENTER);
   for (var i=0; i<500; i ++) {
     circle= 200 + 50*sin(millis()*freq*i);
     col=map(circle,150,250,255,60);
-    r=map(circle,150,250,5,2);
+    r=map(circle,150,250,10,2);
     fill(col,0,74);
     noStroke();
     ellipse(circle*cos(i), circle*sin(i),r,r);
     rot=rot+0.00005;
   }
-  textSize(90);
-  fill(20,20,20);
-  textFont('Georgia')
-  text("Paddle Game",150,200);
-  fill(random(0,255), random(0,255), random(0,255));
-  ellipse(340, 300, 100, 100);
-  fill(random(0,255), random(0,255), random(0,255));
-  ellipse(460, 300, 100, 100);
-  fill(random(0,255), random(0,255), random(0,255));
-  arc(400, 400, 80, 80, 0, PI, CHORD);
 }
-
 //end screen
 function endGame(){
   fill(255);
@@ -94,10 +97,10 @@ function endGame(){
 }
 //loads the buttons
 function makeButtons(){
-  btnEasy = new Button(50, 500, 100, 75, "Easy", color(1, 255, 1), 1);
-  btnMedium = new Button(250, 500, 100, 75, "Medium", color(255, 255, 1), 2);
-  btnHard = new Button(450, 500, 100, 75, "Hard", color(255, 1, 1), 3);
-  btnInstructions = new Button(650, 500, 100, 75, "Instructions",color(0, 255, 255), 4);
+  btnEasy = new Button(-350, 200, 100, 75, "Easy", color(1, 255, 1), 1);
+  btnMedium = new Button(-150, 200, 100, 75, "Medium", color(255, 255, 1), 2);
+  btnHard = new Button(50, 200, 100, 75, "Hard", color(255, 1, 1), 3);
+  btnInstructions = new Button(250, 200, 100, 75, "Instructions",color(0, 255, 255), 4);
 }
 //shows buttons
 function runButtons(){
@@ -108,6 +111,7 @@ function runButtons(){
 }
 //game code
 function playGame(){
+  translate(0,0);
   background(128, 128, 128, 50);
   runObjects();
   removeBall();
