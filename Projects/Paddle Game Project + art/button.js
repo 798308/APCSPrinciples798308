@@ -31,7 +31,7 @@ class Button{
   }
   //checks if the button is pressed and makes different buttons do different things
   isPressed(){
-    if (mouseX - 400 > this.loc.x && mouseX - 400 < this.loc.x + this.w && mouseY - 300 > this.loc.y && mouseY - 300 < this.loc.y + this.h && mouseIsPressed){
+    if (mouseX > this.loc.x + 400 && mouseX < this.loc.x + this.w + 400 && mouseY > this.loc.y + 400 && mouseY < this.loc.y + this.h + 400 && mouseIsPressed){
       if(this.id == 1){
         gameState = 2;
         difficulty = 5;
@@ -62,10 +62,12 @@ class Button{
         text("If a ball hits the bottom of your paddle, you will lose health.", 90, 670);
         text("If you catch a certain amount balls before running out of health, you win!", 90, 690);
       }
+    if (mouseX > this.loc.x && mouseX < this.loc.x + this.w && mouseY > this.loc.y && mouseY < this.loc.y + this.h && mouseIsPressed){
       if(this.id == 5){
         gameState = 1;
         balls = [];
       }
     }
   }
+}
 }
