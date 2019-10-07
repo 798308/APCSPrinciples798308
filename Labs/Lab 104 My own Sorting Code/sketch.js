@@ -12,10 +12,12 @@ function setup() {
   console.log(list);
   for(var n = 0; n < list.length; n++){
     for(var i = list.length; i > 0; i--){
+      a = 0;
+      a = a + 1;
       if(list[0] > list[i]){
         swap(list,0,i);
       }
-      if(list[i] > list[i+1]){
+      if(list[a] > list[i]){
         swap(list,i,i+1);
       }
     }
