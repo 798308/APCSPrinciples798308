@@ -18,7 +18,6 @@ function setup() {
       if(list[i] > list[i+1]){
         swap(list,i,i+1);
       }
-  console.log(list);
     }
   }
   console.log(list);
