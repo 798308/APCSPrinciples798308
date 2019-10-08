@@ -1,3 +1,5 @@
+//  Austin Matel
+// 	10/7/19
 class Square{
   constructor(x,y){
     this.x = x;
@@ -8,9 +10,10 @@ class Square{
     this.render();
   }
   render(){
+    noStroke()
     if(rowNum % 2 === 0){
       if(number % 2 === 0){
-        fill(255,0,0);
+        fill(255,255,255);
       }else{
         fill(0);
       }
@@ -19,7 +22,7 @@ class Square{
       if(number % 2 === 0){
         fill(0);
       }else{
-        fill(255, 0, 0);
+        fill(255, 255, 255);
       }
     }
     rect(this.x, this.y, this.w, this.w);
