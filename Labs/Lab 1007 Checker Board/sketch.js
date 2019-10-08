@@ -3,6 +3,7 @@
 //  This is a comment
 //  The setup function function is called once when your program begins
 var squares = [];
+var rowNum, number;
 function setup() {
   var cnv = createCanvas(800, 800);
   cnv.position((windowWidth-width)/2, 30);
@@ -11,10 +12,10 @@ function setup() {
 loadSquares();
 
 }
-noStroke();
 //creates squares
 function loadSquares(){
   for(var n = 0; n < 8; n++){
+    rowNum = n;
     for(var i = 0; i < 8; i++){
       number = i;
       squares[i] = new Square(100 * i, 100 * n);
