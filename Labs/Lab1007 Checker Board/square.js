@@ -9,19 +9,22 @@ class Square{
   run(){
     this.render();
   }
+  //draws even rows
   render(){
+    noStroke();
     if(rowNum % 2 === 0){
       if(number % 2 === 0){
-        fill(250,245,230);
+        fill(139,69,19);
       }else{
         fill(255,228,196);
       }
     }
+    //draws odd rows
     if(rowNum % 2 === 1){
       if(number % 2 === 0){
         fill(255,228,196);
       }else{
-        fill(250,245,230);
+        fill(139,69,19);
       }
     }
     rect(this.x, this.y, this.w, this.w);
