@@ -17,10 +17,11 @@ function setup() {
   for(var i = 0; i < list.length - 1; i++){
     for (j = 0; j < list.length - 1 - i; j++){
       var x;
-      x = list[i];
+      x = list[j];
       list.splice(i,1);
-      if(list[j] > list[i + j]){
+      if(list[j] < list[j] + 1 && list[j] > list[j] - 1){
         swap(list, j, j + 1);
+        
       }
     }
   }
