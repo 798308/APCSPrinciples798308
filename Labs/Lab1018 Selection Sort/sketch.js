@@ -2,6 +2,7 @@
 //  This is a comment
 //  The setup function function is called once when your program begins
 var list = [];
+var arr = [];
 function setup() {
   function swap(list,a,b){
     var temp = list[a];
@@ -13,14 +14,16 @@ function setup() {
       list[i] = int(random(0, n));
     }
   }
-  makeList(20,list);
+  makeList(5,list);
   console.log(list);
-  for(var i = 1; i < list.length; i++){
-    for (j = i - 1; j > 0; j--){
-      if(list[j] < list[j-1]){
-        swap(list, j, j - 1);
+  for(var i = 0; i === list.length; i++){
+    i--;
+    for (j = 0; j > list.lenght; j++){
+      if(list[j] < list[i]){
+        swap(list, j, i);
+        append(arr, list[i]);
         }
       }
     }
-    console.log(list);
+    console.log(arr);
   }
