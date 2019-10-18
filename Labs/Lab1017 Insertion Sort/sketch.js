@@ -13,17 +13,15 @@ function setup() {
       list[i] = int(random(0, n));
     }
   }
-  makeList(2500,list);
-  for(var i = 0; i < list.length - 1; i++){
-    for (j = 0; j < list.length - 1 - i; j++){
-      var x;
-      x = list[j];
-      list.splice(i,1);
-      if(list[j] < list[j] + 1 && list[j] > list[j] - 1){
-        swap(list, j, j + 1);
-        
-      }
-    }
-  }
+  makeList(25,list);
   console.log(list);
-}
+  for(var i = 0; i < list.length; i++){
+    var x = list[i];
+    var j;
+    for (j = i - 1; j >= 0 && list[j] > x; j--){
+      list[j + 1] = list[j];
+      }
+      list[j + 1] = x;
+    }
+    console.log(list);
+  }
