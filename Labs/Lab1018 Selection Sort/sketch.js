@@ -3,6 +3,12 @@
 //  This is a comment
 //  The setup function function is called once when your program begins
 var list = [];
+var numSwaps = 0;
+var t = millis();
+var t1 = 0;
+var t2 = 0;
+var endTime;
+var numComparisons = 0;
 function setup() {
   function swap(list,a,b){
     var temp = list[a];
@@ -14,18 +20,28 @@ function setup() {
       list[i] = int(random(0, n));
     }
   }
-  makeList(200,list);
+  makeList(20,list);
   console.log(list);
   for(var i = 0; i < list.length - 1; i++){
+    t1 = t / 1000;
+    console.log("start time = " + t1);
     var index = i;
     for (var j = i + 1; j < list.length; j++){
+      numComparisons = numComparisons + 1;
       if(list[j] < list[index]){
         index = j;
-        }
       }
-      var smallerNumber = list[index];
-      list[index] = list[i];
-      list[i] = smallerNumber;
     }
-    console.log(list);
+    var smallerNumber = list[index];
+    list[index] = list[i];
+    list[i] = smallerNumber;
+    numSwaps = numSwaps + 1;
   }
+    t2 = t / 1000;
+    console.log(list);
+    console.log(numSwaps);
+    console.log(numComparisons);
+    console.log("end time = " + t2);
+    endTime = t2 - t1;
+    console.log("total time = " + endTime);
+}

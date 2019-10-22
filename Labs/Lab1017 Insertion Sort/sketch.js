@@ -2,6 +2,8 @@
 //  This is a comment
 //  The setup function function is called once when your program begins
 var list = [];
+var numSwaps = 0;
+var numComparisons = 0;
 function setup() {
   function swap(list,a,b){
     var temp = list[a];
@@ -17,10 +19,14 @@ function setup() {
   console.log(list);
   for(var i = 1; i < list.length; i++){
     for (j = i - 1; j > 0; j--){
+      numComparisons = numComparisons + 1;
       if(list[j] < list[j-1]){
+        numSwaps = numSwaps + 1;
         swap(list, j, j - 1);
         }
       }
     }
     console.log(list);
+    console.log(numSwaps);
+    console.log(numComparisons);
   }
