@@ -39,8 +39,8 @@ function setup() {
   }
     t2 = t / 1000;
     console.log(list);
-    console.log(numSwaps);
-    console.log(numComparisons);
+    console.log("number of swaps = "+numSwaps);
+    console.log("number of comparisons = "+numComparisons);
     console.log("end time = " + t2);
     endTime = t2 - t1;
     console.log("total time = " + endTime);
