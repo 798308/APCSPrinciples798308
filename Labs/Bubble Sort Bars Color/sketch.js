@@ -31,7 +31,7 @@ function setup() {
     }
   }
   //first parameter is the number of bars
-  makeList(200, bars);
+  makeList(100, bars);
 }
 //bubble code
 var i = bars.length - 1;
