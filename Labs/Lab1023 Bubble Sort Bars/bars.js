@@ -1,3 +1,4 @@
+// 	Lab1023 Austin Matel
 class Bar{
   constructor(x,y){
     this.loc = createVector(x,y);

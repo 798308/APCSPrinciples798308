@@ -1,6 +1,4 @@
-// 	Date or version number
-//  This is a comment
-//  The setup function function is called once when your program begins
+// 	Lab1023 Austin Matel
 var bars = [];
 var numBars = 0;
 //this code swaps the location of the bars as well as their index
