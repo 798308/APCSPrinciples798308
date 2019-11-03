@@ -16,8 +16,8 @@ class Food{
   }
   touchingSnake(){
     if(snakeHead.loc.x > this.loc.x && snakeHead.loc.x < this.loc.x + cubeWidth && snakeHead.loc.y > this.loc.y && snakeHead.loc.y < this.loc.y + cubeWidth){
-      this.loc.x = columns + cubeWidth * random(0,80);
-      this.loc.y = rows + cubeWidth * random(0,80);
+      this.loc.x = columns + cubeWidth * random(0,40);
+      this.loc.y = rows + cubeWidth * random(0,40);
     }
   }
 }

@@ -13,11 +13,11 @@ function setup() {
   cnv.position((windowWidth-width)/2, 30);
   background(5, 5, 5);
   fill(200, 30, 150);
-  cubeWidth = 10;
+  cubeWidth = 20;
   columns = width / cubeWidth;
   rows = height / cubeWidth;
   snakeHead = new Snake(columns, 600);
-  food = new Food(columns + cubeWidth * random(0,60), rows + cubeWidth * random(0,60));
+  food = new Food(columns + cubeWidth * random(0,40), rows + cubeWidth * random(0,40));
 }
 function loadObjects(n){
   for(i = 1; i < n; i++){
