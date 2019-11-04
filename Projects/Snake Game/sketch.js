@@ -17,32 +17,48 @@ function setup() {
   columns = width / cubeWidth;
   rows = height / cubeWidth;
   snakeHead = new Snake(columns, 600);
-  food = new Food(columns + cubeWidth * random(0,40), rows + cubeWidth * random(0,40));
+  food = new Food(cubeWidth * int(random(0,800/cubeWidth)),cubeWidth * int(random(0,800/cubeWidth)));
 }
-function loadObjects(n){
-  for(i = 1; i < n; i++){
+function loadObjects(n){//something is wrong here
+  for(i = 0; i < n; i++){
     var addition;
     if(i===0){
-      snake[i] = snakeHead;
+      snake[0] = snakeHead;
+      if(direction === 1){
+        addition = snakeHead.loc.x - cubeWidth;
+      }
+      if(direction === 2){
+        addition = snakeHead.loc.x + cubeWidth;
+      }
+      if(direction === 3){
+        addition = snakeHead.loc.y + cubeWidth;
+      }
+      if(direction === 4){
+        addition = snakeHead.loc.y - cubeWidth;
+      }
+      snake[i] = new Snake(addition, snakeHead.loc.y);
+      snake[i].run();
+    }else{
+      if(direction === 1){
+        addition = snake[i - 1].loc.x - cubeWidth;
+      }
+      if(direction === 2){
+        addition = snake[i - 1].loc.x + cubeWidth;
+      }
+      if(direction === 3){
+        addition = snake[i - 1].loc.y + cubeWidth;
+      }
+      if(direction === 4){
+        addition = snake[i - 1].loc.y - cubeWidth;
+      }
+      snake[i] = new Snake(addition, snake[i-1].loc.y);
+      snake[i].run();
     }
-    if(direction === 1){
-      addition = snake[i - 1].loc.x - cubeWidth;
-    }
-    if(direction === 2){
-      addition = snake[i - 1].loc.x + cubeWidth;
-    }
-    if(direction === 3){
-      addition = snake[i - 1].loc.y + cubeWidth;
-    }
-    if(direction === 4){
-      addition = snake[i - 1].loc.y - cubeWidth;
-    }
-    snake[i] = new Snake(addition, snake[i-1].loc.y);
   }
 }
 //  The draw function is called @ 30 fps
 function draw() {
-  frameRate(25);
+  frameRate(10);
   if(gameOver === 0){
     background(5,5,5);
     snakeHead.run();
