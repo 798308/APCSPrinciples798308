@@ -7,6 +7,7 @@ var snake = [];
 var columns;
 var rows;
 var snakeHead;
+var oneCube = 0;
 var gameOver = 0;
 function setup() {
   var cnv = createCanvas(800, 800);
@@ -16,42 +17,58 @@ function setup() {
   cubeWidth = 20;
   columns = width / cubeWidth;
   rows = height / cubeWidth;
-  snakeHead = new Snake(columns, 600);
+  snakeHead = new Snake(columns, 600, 1);
   food = new Food(cubeWidth * int(random(0,800/cubeWidth)),cubeWidth * int(random(0,800/cubeWidth)));
 }
-function loadObjects(n){//something is wrong here
-  for(i = 0; i < n; i++){
+function loadObjects(n){
     var addition;
-    if(i===0){
+    if(oneCube === 0){
       snake[0] = snakeHead;
+      oneCube = 1;
       if(direction === 1){
         addition = snakeHead.loc.x - cubeWidth;
+        snake[1] = new Snake(addition, snakeHead.loc.y, 0);
+        console.log("m");
       }
       if(direction === 2){
         addition = snakeHead.loc.x + cubeWidth;
+        snake[1] = new Snake(addition, snakeHead.loc.y, 0);
+        console.log("m");
       }
       if(direction === 3){
         addition = snakeHead.loc.y + cubeWidth;
+        snake[1] = new Snake(snakeHead.loc.x, addition, 0);
+        console.log("m");
       }
       if(direction === 4){
         addition = snakeHead.loc.y - cubeWidth;
+        snake[1] = new Snake(snakeHead.loc.x, addition, 0);
+        console.log("m");
       }
-      snake[i] = new Snake(addition, snakeHead.loc.y);
-      snake[i].run();
+      snake[1].run();
+      console.log("?")
     }else{
+      for(i = 0; i < n; i++){
       if(direction === 1){
         addition = snake[i - 1].loc.x - cubeWidth;
+        snake[i] = new Snake(addition, snake[i-1].loc.y, 0);
+        console.log("l");
       }
       if(direction === 2){
         addition = snake[i - 1].loc.x + cubeWidth;
+        snake[i] = new Snake(addition, snake[i-1].loc.y, 0);
+        console.log("l");
       }
       if(direction === 3){
         addition = snake[i - 1].loc.y + cubeWidth;
+        snake[i] = new Snake(snake[i-1].loc.x, addition, 0);
+        console.log("l");
       }
       if(direction === 4){
         addition = snake[i - 1].loc.y - cubeWidth;
+        snake[i] = new Snake(snake[i-1].loc.x, addition, 0);
+        console.log("l");
       }
-      snake[i] = new Snake(addition, snake[i-1].loc.y);
       snake[i].run();
     }
   }
