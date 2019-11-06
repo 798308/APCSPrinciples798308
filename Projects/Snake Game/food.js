@@ -15,10 +15,10 @@ class Food{
     rect(this.loc.x, this.loc.y, this.w, this.w);
   }
   touchingSnake(){
-    if(snakeHead.loc.x === this.loc.x && snakeHead.loc.y === this.loc.y){
+    if(snake.loc.x === this.loc.x && snake.loc.y === this.loc.y){
       this.loc.x = cubeWidth * int(random(0,800/cubeWidth));
       this.loc.y = cubeWidth * int(random(0,800/cubeWidth));
-      loadObjects(1);
+      score = score + 1;
     }
   }
 }
