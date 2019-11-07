@@ -21,7 +21,7 @@ function setup() {
   snake = new Snake(columns, 600);
   food = new Food(cubeWidth * int(random(0,800/cubeWidth)),cubeWidth * int(random(0,800/cubeWidth)));
 }
-runObjects(){
+function runObjects(){
   snake.run();
   food.run();
 }

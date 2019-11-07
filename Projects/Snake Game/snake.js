@@ -25,10 +25,17 @@ class Snake{
   }
   update(){
     for(var i = 0; i < this.body.length; i++){
+      if(i === 0){
       this.body[i].x = this.loc.x;
       this.body[i].y = this.loc.y;
+    }else if(i > 0){
+      this.body[i].x = this.body[i-1].x;
+      this.body[i].y = this.body[i-1].y;
+      this.body[i-1].x = 
     }
-    
+    }
+
+
     if(keyCode === RIGHT_ARROW){
       if(direction === 2){
         gameOver = 1;
@@ -69,8 +76,8 @@ class Snake{
     }
   }
   loadSegments(){
-    for(var i = 1; i < score; i++){
-      this.body[i] = (createVector(0,0));
+    for(var i = 0; i < score; i++){
+      this.body.push(createVector(0,0));
     }
   }
 }
