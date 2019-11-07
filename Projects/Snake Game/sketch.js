@@ -21,13 +21,16 @@ function setup() {
   snake = new Snake(columns, 600);
   food = new Food(cubeWidth * int(random(0,800/cubeWidth)),cubeWidth * int(random(0,800/cubeWidth)));
 }
+runObjects(){
+  snake.run();
+  food.run();
+}
 //  The draw function is called @ 30 fps
 function draw() {
   frameRate(10);
   if(gameOver === 0){
     background(5,5,5);
-    snake.run();
-    food.run();
+    runObjects();
   }
   if(gameOver === 1){
     fill(255);
