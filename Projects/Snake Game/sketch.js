@@ -31,6 +31,8 @@ function draw() {
   if(gameOver === 0){
     background(5,5,5);
     runObjects();
+    textSize(20);
+    text("Score = "+score,10,20);
   }
   if(gameOver === 1){
     fill(255);
