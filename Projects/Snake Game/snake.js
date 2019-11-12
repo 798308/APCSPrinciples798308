@@ -28,9 +28,9 @@ class Snake{
       if(i === 0){
       this.body[i].x = this.loc.x;
       this.body[i].y = this.loc.y;
-    }else if(i > 1){
-      this.body[score].x = this.body[score - 1].x;
-      this.body[score].y = this.body[score-1].y;
+    }else{
+      this.body[i].x = this.body[i - 1].x;
+      this.body[i].y = this.body[i - 1].y;
     }
   }
 
@@ -75,9 +75,8 @@ class Snake{
     }
   }
   loadSegments(){
-    for(var i = 0; i < score; i++){
-      this.body.push(createVector(0,0));
-      console.log("hey bud")
+    if(this.body.length < score){
+      this.body.push(createVector(this.loc.x, this.loc.y));
     }
   }
 }

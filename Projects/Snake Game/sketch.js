@@ -18,7 +18,7 @@ function setup() {
   cubeWidth = 20;
   columns = width / cubeWidth;
   rows = height / cubeWidth;
-  snake = new Snake(columns, 600);
+  snake = new Snake(columns, rows);
   food = new Food(cubeWidth * int(random(0,800/cubeWidth)),cubeWidth * int(random(0,800/cubeWidth)));
 }
 function runObjects(){
@@ -27,12 +27,12 @@ function runObjects(){
 }
 //  The draw function is called @ 30 fps
 function draw() {
-  frameRate(10);
   if(gameOver === 0){
     background(5,5,5);
     runObjects();
     textSize(20);
     text("Score = "+score,10,20);
+    frameRate(10);
   }
   if(gameOver === 1){
     fill(255);
