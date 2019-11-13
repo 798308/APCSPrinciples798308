@@ -10,9 +10,9 @@ class Snake{
   }
   run(){
     this.render();
+    this.loadSegments();
     this.update();
     this.checkEdges();
-    this.loadSegments();
   }
   render(){
     //render head
@@ -24,15 +24,18 @@ class Snake{
     }
   }
   update(){
-    for(var i = 0; i < this.body.length; i++){
-      if(i === 0){
-      this.body[i].x = this.loc.x;
-      this.body[i].y = this.loc.y;
-    }else{
-      this.body[i].x = this.body[i - 1].x;
-      this.body[i].y = this.body[i - 1].y;
+    if(score === 1){
+      this.body[score].x = this.loc.x;
+      this.body[score].y = this.loc.y;
     }
-  }
+     if(score === 2){
+      this.body[score].x = this.body[score - 1].x;
+      this.body[score].y = this.body[score - 1].y;
+    }
+    if(score === 2){
+     this.body[score].x = this.body[score - 1].x;
+     this.body[score].y = this.body[score - 1].y;
+   }
 
 
     if(keyCode === RIGHT_ARROW){
@@ -69,14 +72,15 @@ class Snake{
     }
     this.loc.add(this.vel);
   }
+  loadSegments(){
+    if(this.body.length <= score){
+      this.body.push(createVector(this.loc.x, this.loc.y));
+      console.log("cool");
+      }
+    }
   checkEdges(){
     if(this.loc.x > width - this.w || (this.loc.x < 0) || (this.loc.y > height - this.w) || (this.loc.y < 0)){
       gameOver = 1;
-    }
-  }
-  loadSegments(){
-    if(this.body.length < score){
-      this.body.push(createVector(this.loc.x, this.loc.y));
     }
   }
 }
