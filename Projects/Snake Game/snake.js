@@ -24,20 +24,14 @@ class Snake{
     }
   }
   update(){
-    if(score === 1){
-      this.body[score].x = this.loc.x;
-      this.body[score].y = this.loc.y;
+    for(var i = 1; i < this.body.length; i++){
+      this.body[i].y = this.body[i - 1].y;
+      this.body[i].x = this.body[i - 1].x;
     }
-     if(score === 2){
-      this.body[score].x = this.body[score - 1].x;
-      this.body[score].y = this.body[score - 1].y;
+    if(this.body.length > 0){
+      this.body[0].x = this.loc.x;
+      this.body[0].y = this.loc.y;
     }
-    if(score === 2){
-     this.body[score].x = this.body[score - 1].x;
-     this.body[score].y = this.body[score - 1].y;
-   }
-
-
     if(keyCode === RIGHT_ARROW){
       if(direction === 2){
         gameOver = 1;
@@ -73,7 +67,7 @@ class Snake{
     this.loc.add(this.vel);
   }
   loadSegments(){
-    if(this.body.length <= score){
+    if(this.body.length < score){
       this.body.push(createVector(this.loc.x, this.loc.y));
       console.log("cool");
       }
