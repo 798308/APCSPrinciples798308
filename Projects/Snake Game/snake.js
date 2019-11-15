@@ -13,6 +13,7 @@ class Snake{
     this.loadSegments();
     this.update();
     this.checkEdges();
+    this.tangle();
   }
   render(){//displays the head and segments of the snake
     //render head
@@ -24,14 +25,6 @@ class Snake{
     }
   }
   update(){//makes sure the head moves and the segments follow the head
-    for(var i = 1; i < this.body.length; i++){
-      this.body[i].y = this.body[i - 1].y;
-      this.body[i].x = this.body[i - 1].x;
-    }
-    if(this.body.length > 0){
-      this.body[0].x = this.loc.x;
-      this.body[0].y = this.loc.y;
-    }
     if(keyCode === RIGHT_ARROW){
       if(direction === 2){
         gameOver = 1;
@@ -64,6 +57,14 @@ class Snake{
         this.vel.y = cubeWidth;
         direction = 4;
     }
+    for(var i = this.body.length - 1; i > 0; i--){
+      this.body[i].y = this.body[i - 1].y;
+      this.body[i].x = this.body[i - 1].x;
+    }
+    if(this.body.length > 0){
+      this.body[0].x = this.loc.x;
+      this.body[0].y = this.loc.y;
+    }
     this.loc.add(this.vel);
   }
   loadSegments(){//fills the list of segments with vectors
@@ -77,4 +78,15 @@ class Snake{
       gameOver = 1;
     }
   }
+  tangle(){
+    if(this.body.length > 3){
+      for(var i = 0; i < this.body.length; i++){
+        temp = i;
+          if (this.loc.x === this.body[i].x && this.loc.y === this.body[i].y){
+            gameOver = 1;
+            this.clr = color(random(0,255),random(0,255),random(0,255));
+          }
+        }
+      }
+    }
 }

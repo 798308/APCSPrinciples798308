@@ -2,7 +2,7 @@
 // 	10/31/19
 //  This is a comment
 //  The setup function function is called once when your program begins
-var cubeWidth, food, direction;
+var cubeWidth, food, direction, temp;
 var score = 0;
 var columns;
 var rows;
