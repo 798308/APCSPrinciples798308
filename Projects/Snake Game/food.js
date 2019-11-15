@@ -10,12 +10,12 @@ class Food{
     this.render();
     this.touchingSnake();
   }
-  render(){
+  render(){//shows the red food
     fill(this.clr);
     rect(this.loc.x, this.loc.y, this.w, this.w);
   }
   touchingSnake(){
-    if(snake.loc.x === this.loc.x && snake.loc.y === this.loc.y){
+    if(snake.loc.x === this.loc.x && snake.loc.y === this.loc.y){//puts the food in a random place
       this.loc.x = cubeWidth * int(random(0,800/cubeWidth));
       this.loc.y = cubeWidth * int(random(0,800/cubeWidth));
       score = score + 1;
