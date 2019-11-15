@@ -26,7 +26,7 @@ function runObjects(){//runs the snake and food
   food.run();
 }
 //  The draw function is called @ 30 fps
-function draw() {
+function draw() {//pauses and ends game when snake dies
   if(gameOver === 0){
     background(5,5,5);
     runObjects();
