@@ -32,7 +32,7 @@ function draw() {//pauses and ends game when snake dies
     runObjects();
     textSize(20);
     text("Score = "+score,10,20);
-    frameRate(10);
+    frameRate(15);
   }
   if(gameOver === 1){
     fill(255);

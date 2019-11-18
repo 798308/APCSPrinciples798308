@@ -25,34 +25,22 @@ class Snake{
     }
   }
   update(){//makes sure the head moves and the segments follow the head
-    if(keyCode === RIGHT_ARROW){
-      if(direction === 2){
-        gameOver = 1;
-      }
+    if(keyCode === RIGHT_ARROW && direction !== 2){
       this.vel.y = 0;
       this.vel.x = cubeWidth;
       direction = 1;
     }
-    if(keyCode === LEFT_ARROW){
-      if(direction === 1){
-        gameOver = 1;
-      }
+    if(keyCode === LEFT_ARROW && direction !== 1){
       this.vel.y = 0;
       this.vel.x = -cubeWidth;
       direction = 2;
     }
-    if(keyCode === UP_ARROW){
-      if(direction === 4){
-        gameOver = 1;
-      }
+    if(keyCode === UP_ARROW && direction !== 4){
       this.vel.x = 0;
       this.vel.y = -cubeWidth;
       direction = 3;
     }
-    if(keyCode === DOWN_ARROW){
-      if(direction === 3){
-        gameOver = 1;
-      }
+    if(keyCode === DOWN_ARROW && direction !== 3){
         this.vel.x = 0;
         this.vel.y = cubeWidth;
         direction = 4;
@@ -70,7 +58,6 @@ class Snake{
   loadSegments(){//fills the list of segments with vectors
     if(this.body.length < score){
       this.body.push(createVector(this.loc.x, this.loc.y));
-      console.log("cool");
       }
     }
   checkEdges(){//makes you lose when the snake head hits the edges
@@ -84,7 +71,6 @@ class Snake{
         temp = i;
           if (this.loc.x === this.body[i].x && this.loc.y === this.body[i].y){
             gameOver = 1;
-            this.clr = color(random(0,255),random(0,255),random(0,255));
           }
         }
       }

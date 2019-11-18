@@ -16,8 +16,17 @@ class Food{
   }
   touchingSnake(){
     if(snake.loc.x === this.loc.x && snake.loc.y === this.loc.y){//puts the food in a random place
+
       this.loc.x = cubeWidth * int(random(0,800/cubeWidth));
       this.loc.y = cubeWidth * int(random(0,800/cubeWidth));
+      for(var i = 0; i < snake.body.length; i++){
+        if(this.loc.x === snake.body[i].x){
+          this.loc.x = cubeWidth * int(random(0,800/cubeWidth));
+        }
+        if(this.loc.y === snake.body[i].y){
+          this.loc.y = cubeWidth * int(random(0,800/cubeWidth));
+        }
+      }
       score = score + 1;
     }
   }
