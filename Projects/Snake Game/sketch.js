@@ -3,6 +3,7 @@
 //  This is a comment
 //  The setup function function is called once when your program begins
 var cubeWidth, food, direction, temp;
+var highscore = 0;
 var score = 0;
 var columns;
 var rows;
@@ -33,10 +34,23 @@ function draw() {//pauses and ends game when snake dies
     textSize(20);
     text("Score = "+score,10,20);
     frameRate(15);
+    text("Highscore = "+highscore, 660, 20);
   }
   if(gameOver === 1){
     fill(255);
     textSize(90);
     text("Game Over!!!", 100, 100);
+    textSize(40);
+    text("Press Spacesbar", 220, 600);
+    if(score > highscore){
+      highscore = score;
+    }
+    if(keyCode === 32){
+      gameOver = 0;
+      snake = new Snake(columns, rows);
+      food = new Food(cubeWidth * int(random(0,800/cubeWidth)),cubeWidth * int(random(0,800/cubeWidth)));
+      snake.body = [];
+    }
+    score = 0;
   }
 }

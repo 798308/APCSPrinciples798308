@@ -56,7 +56,7 @@ class Snake{
     this.loc.add(this.vel);
   }
   loadSegments(){//fills the list of segments with vectors
-    if(this.body.length < score){
+    if(this.body.length / 2 < score){
       this.body.push(createVector(this.loc.x, this.loc.y));
       }
     }
