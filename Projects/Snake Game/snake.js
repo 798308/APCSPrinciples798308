@@ -4,7 +4,7 @@ class Snake{
   constructor(x,y){
     this.loc = createVector(x,y);
     this.w = cubeWidth;
-    this.clr = color(0,255,0);
+    this.clr = color(random(0,255), random(0,255), random(0,255));
     this.vel = createVector(0, 0);
     this.body = [];
   }
@@ -25,26 +25,6 @@ class Snake{
     }
   }
   update(){//makes sure the head moves and the segments follow the head
-    if(keyCode === RIGHT_ARROW && direction !== 2){
-      this.vel.y = 0;
-      this.vel.x = cubeWidth;
-      direction = 1;
-    }
-    if(keyCode === LEFT_ARROW && direction !== 1){
-      this.vel.y = 0;
-      this.vel.x = -cubeWidth;
-      direction = 2;
-    }
-    if(keyCode === UP_ARROW && direction !== 4){
-      this.vel.x = 0;
-      this.vel.y = -cubeWidth;
-      direction = 3;
-    }
-    if(keyCode === DOWN_ARROW && direction !== 3){
-        this.vel.x = 0;
-        this.vel.y = cubeWidth;
-        direction = 4;
-    }
     for(var i = this.body.length - 1; i > 0; i--){
       this.body[i].y = this.body[i - 1].y;
       this.body[i].x = this.body[i - 1].x;
@@ -56,7 +36,7 @@ class Snake{
     this.loc.add(this.vel);
   }
   loadSegments(){//fills the list of segments with vectors
-    if(this.body.length / 2 < score){
+    if(this.body.length / 3 < score){
       this.body.push(createVector(this.loc.x, this.loc.y));
       }
     }

@@ -26,11 +26,34 @@ function runObjects(){//runs the snake and food
   snake.run();
   food.run();
 }
+function keyPressed(){//detects when the arrow keys are pressed
+  if(keyCode === RIGHT_ARROW && direction !== 2){
+    snake.vel.y = 0;
+    snake.vel.x = cubeWidth;
+    direction = 1;
+  }
+  if(keyCode === LEFT_ARROW && direction !== 1){
+    snake.vel.y = 0;
+    snake.vel.x = -cubeWidth;
+    direction = 2;
+  }
+  if(keyCode === UP_ARROW && direction !== 4){
+    snake.vel.x = 0;
+    snake.vel.y = -cubeWidth;
+    direction = 3;
+  }
+  if(keyCode === DOWN_ARROW && direction !== 3){
+      snake.vel.x = 0;
+      snake.vel.y = cubeWidth;
+      direction = 4;
+  }
+}
 //  The draw function is called @ 30 fps
 function draw() {//pauses and ends game when snake dies
   if(gameOver === 0){
     background(5,5,5);
     runObjects();
+    keyPressed();
     textSize(20);
     text("Score = "+score,10,20);
     frameRate(15);
