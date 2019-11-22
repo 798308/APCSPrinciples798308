@@ -48,7 +48,6 @@ class Snake{
   tangle(){
     if(this.body.length > 3){
       for(var i = 0; i < this.body.length; i++){
-        temp = i;
           if (this.loc.x === this.body[i].x && this.loc.y === this.body[i].y){
             gameOver = 1;
           }
