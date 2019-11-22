@@ -2,14 +2,14 @@
 // 	10/31/19
 //  This is a comment
 //  The setup function function is called once when your program begins
-var cubeWidth, food, direction, temp;
+var cubeWidth, food, direction, temp, button;
 var highscore = 0;
 var score = 0;
 var columns;
 var rows;
 var snake;
 var oneCube = 0;
-var gameOver = 0;
+var gameState = 1;
 var snakeNum = 1;
 function setup() {
   var cnv = createCanvas(800, 800);
@@ -21,6 +21,7 @@ function setup() {
   rows = height / cubeWidth;
   snake = new Snake(columns, rows);
   food = new Food(cubeWidth * int(random(0,800/cubeWidth)),cubeWidth * int(random(0,800/cubeWidth)));
+  button = new Button(300, 600, 200, 100, "Start", color(255,0,0));
 }
 function runObjects(){//runs the snake and food
   snake.run();
@@ -48,32 +49,49 @@ function keyPressed(){//detects when the arrow keys are pressed
       direction = 4;
   }
 }
+function startGame(){//displays start screen
+  textFont('Courier New');
+  background(5,5,5);
+  textSize(90);
+  fill(0,255,0);
+  text("Snake Game", 150, 100);
+  button.run();
+}
+function playGame(){//runs the game
+  background(5,5,5);
+  runObjects();
+  keyPressed();
+  textSize(20);
+  text("Score = "+score,10,20);
+  frameRate(15);
+  text("Highscore = "+highscore, 630, 20);
+}
+function endGame(){//ends the game
+  fill(255);
+  textSize(90);
+  text("Game Over!!!", 100, 100);
+  textSize(40);
+  text("Press Spacesbar", 220, 600);
+  if(score > highscore){
+    highscore = score;
+  }
+  if(keyCode === 32){
+    gameState = 2;
+    snake = new Snake(columns, rows);
+    food = new Food(cubeWidth * int(random(0,800/cubeWidth)),cubeWidth * int(random(0,800/cubeWidth)));
+    snake.body = [];
+  }
+  score = 0;
+}
 //  The draw function is called @ 30 fps
 function draw() {//pauses and ends game when snake dies
-  if(gameOver === 0){
-    background(5,5,5);
-    runObjects();
-    keyPressed();
-    textSize(20);
-    text("Score = "+score,10,20);
-    frameRate(15);
-    text("Highscore = "+highscore, 660, 20);
+  if(gameState === 1){
+    startGame();
   }
-  if(gameOver === 1){
-    fill(255);
-    textSize(90);
-    text("Game Over!!!", 100, 100);
-    textSize(40);
-    text("Press Spacesbar", 220, 600);
-    if(score > highscore){
-      highscore = score;
-    }
-    if(keyCode === 32){
-      gameOver = 0;
-      snake = new Snake(columns, rows);
-      food = new Food(cubeWidth * int(random(0,800/cubeWidth)),cubeWidth * int(random(0,800/cubeWidth)));
-      snake.body = [];
-    }
-    score = 0;
+  if(gameState === 2){
+    playGame();
+  }
+  if(gameState === 3){
+    endGame();
   }
 }

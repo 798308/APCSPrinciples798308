@@ -4,7 +4,7 @@ class Snake{
   constructor(x,y){
     this.loc = createVector(x,y);
     this.w = cubeWidth;
-    this.clr = color(random(0,255), random(0,255), random(0,255));
+    this.clr = color(0,255,0);
     this.vel = createVector(0, 0);
     this.body = [];
   }
@@ -42,14 +42,14 @@ class Snake{
     }
   checkEdges(){//makes you lose when the snake head hits the edges
     if(this.loc.x > width - this.w || (this.loc.x < 0) || (this.loc.y > height - this.w) || (this.loc.y < 0)){
-      gameOver = 1;
+      gameState = 3;
     }
   }
   tangle(){
     if(this.body.length > 3){
       for(var i = 0; i < this.body.length; i++){
           if (this.loc.x === this.body[i].x && this.loc.y === this.body[i].y){
-            gameOver = 1;
+            gameState = 3;
           }
         }
       }
