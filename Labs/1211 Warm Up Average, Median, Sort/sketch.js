@@ -1,4 +1,5 @@
-// 	Date or version number
+// 12/11/19 WarmUp
+// Austin Matel
 //  This is a comment
 //  The setup function function is called once when your program begins
 var list = [];
